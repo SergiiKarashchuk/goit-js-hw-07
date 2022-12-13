@@ -3,11 +3,10 @@ import { galleryItems } from './gallery-items.js';
 
 console.log(galleryItems);
 
-
 console.log(createGalleryCardsMarkup(galleryItems));
 
 function createGalleryCardsMarkup(galleryItems)  {
-    const markup = galleryItems.map(({ preview, original, description }) => {
+    return galleryItems.map(({ preview, original, description }) => {
         `
         <div class="gallery__item">
        <a class="gallery__link" href="${original}">
@@ -21,6 +20,5 @@ function createGalleryCardsMarkup(galleryItems)  {
      </div>
         `; 
     });
-    console.log(markup);
   }
 
