@@ -19,7 +19,7 @@ galleryContainer.addEventListener('click', onGalleryContainerClick)
 // створюю функцію що буде перевіряти КЛІК та за допомогою basicLightbox - відкривати модалку
 //  з обраною картинкою. Та закривати при кліку на Escape
 function onGalleryContainerClick(evt) {
-    blockStandartAction(evt);
+  evt.preventDefault();
 
 
    const isGalleryImage = evt.target.classList.contains('gallery__image');
@@ -28,23 +28,18 @@ function onGalleryContainerClick(evt) {
      }
      console.log(evt.target);
 
-     const instance = basicLightbox.create(`<img src=${evt.target.dataset.source} width="800" height="600">`);
- instance.show();
-
- galleryContainer = addEventListener("keydown", (evt) =>{
-    if (evt.code === "Escape" ) {
-        instance.close();
-    }
- });
+     const instance = basicLightbox.create(`<img src=${evt.target.dataset.source} width="800" height="600">`, {onShow: (document.addEventListener), onClose: (document.removeEventListener)});
+     instance.show();
+     
+  //    galleryContainer = addEventListener("keydown", (evt) =>{
+  //     if (evt.code === "Escape" ) {
+  //         instance.close();
+  //     }
+  //  });
+  
 }
 
 // console.log(createGalleryCardsMarkup(galleryItems));
-
-// функція заборони стандартних дій щоб браузер не відкривав картинку у іншому вікні
-function blockStandartAction(evt) {
-    evt.preventDefault();
-}
-
 
 // Створюю розмітку для картки як шаблон
 function createGalleryCardsMarkup(galleryItems)  {

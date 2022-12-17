@@ -13,29 +13,7 @@ const cardsMarkup = createGalleryCardsMarkup(galleryItems);
 // створюю контейнер і додаю в нього всі картки галереї що є строками
 galleryContainer.insertAdjacentHTML('beforeend', cardsMarkup);
 
-// додаю слухача подій на КЛІК
-galleryContainer.addEventListener('click', onGalleryContainerClick)
-
-// створюю функцію що буде перевіряти КЛІК та за допомогою basicLightbox - відкривати модалку
-//  з обраною картинкою. Та закривати при кліку на Escape
-function onGalleryContainerClick(evt) {
-    blockStandartAction(evt);
-
-
-   const isGalleryImage = evt.target.classList.contains('gallery__image');
-    if (!isGalleryImage) {
-        return
-     }
-     console.log(evt.target);
-
-     let gallery = new SimpleLightbox('.gallery a', {captionsData: 'alt', captionDelay: 250,});
-     gallery.on('show.simplelightbox', function () {
-
-         // do something…
-     });
-    }
-
-
+let gallery = new SimpleLightbox('.gallery a', {captionsData: 'alt', captionDelay: 250,});
 
 
 console.log(createGalleryCardsMarkup(galleryItems));
