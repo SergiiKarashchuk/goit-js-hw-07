@@ -28,8 +28,34 @@ function onGalleryContainerClick(evt) {
      }
      console.log(evt.target);
 
-     const instance = basicLightbox.create(`<img src=${evt.target.dataset.source} width="800" height="600">`, {onShow: (document.addEventListener), onClose: (document.removeEventListener)});
-     instance.show();
+     galleryEl.addEventListener('click', onImgClick);
+
+     const instance = basicLightbox.create(`<img <class="modal-img" src="">`, {
+      onShow: instance => { 
+        window.addEventListener('keydown', onEscClick);
+      },
+      onClose: instance => { 
+        window.removeEventListener('keydown', onEscClick);
+      },
+     });
+
+     function onImgClick(evt) {
+      evt.preventDefault();
+      if(evt.target.nodeName !== 'IMG') {
+        return
+      }
+      instance.element().querySelector('img').src = evt.target.dataset.source;
+      instance.show();
+     }
+
+     function onEscClick(evt) {
+      evt.preventDefault();
+      if(evt.key === 'Escape') {
+        instance.close();
+        return
+      }
+     }
+
      
   //    galleryContainer = addEventListener("keydown", (evt) =>{
   //     if (evt.code === "Escape" ) {

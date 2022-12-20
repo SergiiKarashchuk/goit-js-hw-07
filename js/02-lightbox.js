@@ -19,9 +19,9 @@ let gallery = new SimpleLightbox('.gallery a', {captionsData: 'alt', captionDela
 console.log(createGalleryCardsMarkup(galleryItems));
 
 // функція заборони стандартних дій щоб браузер не відкривав картинку у іншому вікні
-function blockStandartAction(evt) {
-    evt.preventDefault();
-}
+// function blockStandartAction(evt) {
+//     evt.preventDefault();
+// }
 
 
 // Створюю розмітку для картки як шаблон
